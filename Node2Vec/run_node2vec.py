@@ -84,7 +84,7 @@ def parse_args():
   parser.add_argument('--folder_dir', default='./datasets/', type=str)
   parser.add_argument('--model', default='Node2Vec', type=str)
   parser.add_argument('--dataset', default='FT', help='FT, DBLP, D_W_15K_V1', type=str)
-  parser.add_argument('--device', default='cuda:3', type=str)
+  parser.add_argument('--device', default='cuda:0', type=str) # HACK：更改cuda默认值3->0
   # for embedding
   parser.add_argument('--embed_dim', type=int, default=cfg.dim_feature, help='Embedding dimension')
   # for alignment

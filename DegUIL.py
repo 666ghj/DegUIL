@@ -25,8 +25,8 @@ parser.add_argument("--dropout", type=float, default=0.5, help='dropout')
 parser.add_argument("--D", type=int, default=5, help='num of node neighbor')
 parser.add_argument("--lr", type=float, default=5e-4, help='learning rate')
 parser.add_argument("--seed", type=int, default=2022, help='Random seed')
-parser.add_argument("--epochs", type=int, default=1200, help='Epochs')
-parser.add_argument("--device", type=str, default='cuda:1', help='gpu id or cpu')
+parser.add_argument("--epochs", type=int, default=3, help='Epochs') # HACK：更改默认值1200->3，减少时间
+parser.add_argument("--device", type=str, default='cuda:0', help='gpu id or cpu') # HACK：更改cuda默认值3->0
 
 args = parser.parse_args()
 cfg.init_args(args)
@@ -145,7 +145,7 @@ optimizer = optim.Adam(
 t_total = time.time()
 uil_h = UILAggregator(adj_s, adj_t, links, k=cfg.k)
 
-print_info_epochs = 10
+print_info_epochs = 1 # HACK：更改默认值10->1
 loss_epc = .0
 for epoch in range(args.epochs):
     t = time.time()

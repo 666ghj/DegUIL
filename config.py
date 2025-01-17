@@ -4,7 +4,7 @@ from time import strftime, gmtime, localtime
 
 ratio = 0.5
 k = 10  # hit@k
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu') # HACK: use cuda:1->3
 model = 'DegUIL'
 dataset = 'FT'
 options = 'structure'
@@ -31,7 +31,7 @@ percent = 99
 MLP_hid = 128
 
 
-log = strftime("logs/{}_{}_{}_{:.1f}_%m-%d_%H:%M:%S.txt".format(
+log = strftime("logs/{}_{}_{}_{:.1f}_%m-%d_%H-%M-%S.txt".format( # HACK: %H:%M:%S非法路径更改为%H-%M-%S
         model, ''.join([s[0] for s in options.split()]), k, ratio
     ), localtime())
 
@@ -58,7 +58,7 @@ def init_args(args):
     best_embs_file = os.path.join(best_embs_path, '{}_{}_{}_best_embs.pkl'.format(model, dataset, ratio))
     # best_embs_file = os.path.join(best_embs_path, '{}_{}_deg_best_embs.pkl'.format(model, dataset))
 
-    log = strftime("logs/{}_{}_{}_{:.1f}_%m-%d_%H:%M:%S.txt".format(
+    log = strftime("logs/{}_{}_{}_{:.1f}_%m-%d_%H-%M-%S.txt".format( # HACK: %H:%M:%S非法路径更改为%H-%M-%S
         model, ''.join([s[0] for s in options.split()]), k, ratio
     ), localtime())
 

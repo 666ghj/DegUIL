@@ -190,8 +190,9 @@ class UILAggregator(UIL):
         if mrr > self.mrr_best:
             self.mrr_best = mrr
             self.hit_best = hit_p
-            if epoch > 400:  # save best model, saving time
+            if epoch > 1:  # save best model, saving time # HACK: 更改保存默认值400->1
                 write_pickle([embed_s.detach().cpu(), embed_t.detach().cpu()], cfg.best_embs_file)
+                print(f"Saved embeddings to {cfg.best_embs_file}") # HACK: 添加保存提示
         self.log.info('Epoch: {}, MRR_best: {:.4f}, Hit_best: {:.4f}'.format(epoch, self.mrr_best, self.hit_best))
 
     def print_performance_k(self):
