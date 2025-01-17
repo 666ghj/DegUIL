@@ -18,6 +18,8 @@ class Instructor:
             to_disk=True, log_file=cfg.log)
 
     def rename_log(self, filename):
+        # HACK：处理文件名，替换非法字符（如冒号）
+        filename = filename.replace(":", "-")
         logging.shutdown()
         os.rename(cfg.log, filename)
 
